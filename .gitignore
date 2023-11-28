@@ -50,10 +50,14 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
+test_auto_turno.py
 
 # Translations
 *.mo
 *.pot
+
+# Mac stuff:
+.DS_Store
 
 # Django stuff:
 *.log
