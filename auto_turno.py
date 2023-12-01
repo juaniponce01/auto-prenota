@@ -3,6 +3,9 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from smtp_notify import SMTPNotifier
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Replace 'your_website_url' with the actual website URL you want to interact with
 website_url = 'https://prenotami.esteri.it/Home?ReturnUrl=%2fServices'
@@ -11,10 +14,10 @@ website_url = 'https://prenotami.esteri.it/Home?ReturnUrl=%2fServices'
 driver = webdriver.Chrome()
 
 # Replace 'your_email' with your actual email to receive notifications
-from_email = 'juaniponce0@gmail.com'
+from_email = 'auto-prenota@outlook.com'
 to_email = 'juaniponce0@gmail.com'
 subject = 'Turno Conseguido!'
-body = 'Si te llegó este mail, significa que consguiste un turno, felicidades! :D'
+body = 'Conseguiste entrar a la pagina para sacar el turno! \nEntra a https://prenotami.esteri.it/Home?ReturnUrl=%2fServices para saber como seguir. \n \n Saludos, \n Prenota Bot'
 
 notifier = SMTPNotifier(os.environ['SMTP_SERVER'], 
                         os.environ['SMTP_PORT'], 
@@ -51,9 +54,9 @@ def got_in():
         # Find the OK button element
         driver.find_element(
             By.XPATH, '//html/body/div[2]/div[2]/div/div/div/div/div/div/div/div[4]/button')
-        return False  # Element found
+        return True  # Element found
     except:
-        return True  # Element not found
+        return False  # Element not found
 
 def main():
     # Open the website
