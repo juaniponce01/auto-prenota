@@ -1,4 +1,5 @@
 import os
+import sys
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -51,14 +52,33 @@ def perform_login():
 
 def got_in():
     try:
-        # Find the OK button element
+        # If the OK Button appears it means there is no turn available
         driver.find_element(
             By.XPATH, '//html/body/div[2]/div[2]/div/div/div/div/div/div/div/div[4]/button')
-        return True  # Element found
+        return False  # Element found (no turn available)
     except:
-        return False  # Element not found
+        return True  # Element not found (turn available)
+    
+def go_to_services():
+    # Find the book tab button element
+    tab_button = driver.find_element(
+        By.XPATH, '//*[@id="advanced"]')
+    tab_button.click()
+    time.sleep(1)
+    
+def check_PrivacyCheckBox():
+    privacy_checkbox = driver.find_element(
+        By.XPATH, '//*[@id="PrivacyCheck"]')
+    privacy_checkbox.click()
+    time.sleep(1)
+        
+def go_forward():
+    forward_button = driver.find_element(
+        By.XPATH, '//*[@id="btnAvanti"]')
+    forward_button.click()
+    time.sleep(1)
 
-def main():
+def main(book_type):
     # Open the website
     driver.get(website_url)
 
@@ -67,22 +87,34 @@ def main():
             perform_login()
         
         # Make an appoinment
-        element_to_click = driver.find_element(
-            By.XPATH, '//*[@id="dataTableServices"]/tbody/tr[1]/td[4]/a/button')
-        element_to_click.click()
+        book_reconstruction_button = driver.find_element(
+            By.XPATH, '//*[@id="dataTableServices"]/tbody/tr[' + book_type + ']/td[4]/a/button')
+        book_reconstruction_button.click()
 
         # Wait for a while to see the changes
         time.sleep(5)
         
         if got_in():
-            notifier.send_email(from_email, to_email, subject, body)
+            notifier.send_email(from_email, to_email, 
+                                'Conseguiste turno!', 
+                                'Conseguiste entrar a la pagina para sacar el turno! \nEntra a https://prenotami.esteri.it/Home?ReturnUrl=%2fServices para saber como seguir. \n \n Saludos, \n Prenota Bot')
+            # check_PrivacyCheckBox()
+            # go_forward()
         else:
             # Close the browser
             driver.quit()
+            notifier.send_email(from_email, to_email, 
+                                'Turno no disponible', 
+                                'Lamento informarte que actualmente no hay turnos disponibles. Seguiremos probando hasta conseguirlo. Gracias por tu paciencia.')
 
     except Exception as e:
         print("An error occurred:", str(e))
         
 
 if __name__ == "__main__":
-    main()
+    if (len(sys.argv) == 2):
+        main(sys.argv[1])
+    else:
+        main('2')
+        
+        

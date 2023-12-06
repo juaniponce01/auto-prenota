@@ -23,21 +23,4 @@ class SMTPNotifier:
         
         smtp.sendmail(from_email, to_email, message)
         smtp.quit()
-            
-            
-# Example of usage:
-# smtp_server = os.getenv('SMTP_SERVER').__str__()
-# smtp_port = os.getenv('SMTP_PORT').__str__()
-# smtp_username = os.getenv('SMTP_USERNAME').__str__()
-# smtp_password = os.getenv('SMTP_PASSWORD').__str__()
-
-# notifier = SMTPNotifier(smtp_server, smtp_port, smtp_username, smtp_password)
-
-# from_email = 'juaniponce0@gmail.com'
-# to_email = 'juaniponce0@gmail.com'
-# message = """Subject: Hola, mundo!
-# Este es un mail de prueba."""
-
-# result = notifier.send_email(from_email, to_email, message)
-# print(result)
 

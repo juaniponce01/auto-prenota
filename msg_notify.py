@@ -1,6 +1,9 @@
 import os
 import pywhatkit
 from twilio.rest import Client
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Your Twilio Account SID and Auth Token
 account_sid = os.environ['TWILIO_ACCOUNT_SID']
