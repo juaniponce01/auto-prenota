@@ -25,7 +25,7 @@ def schedule_script(script_path, cron_expression):
     print(f"Script scheduled successfully with cron expression: {cron_expression}")
 
 if __name__ == "__main__":
-    script_path = "/path/to/your_script.py"
+    script_path = "smtp_prueba.py"
     cron_expression = "2 0 * * *"
 
     schedule_script(script_path, cron_expression)
