@@ -1,0 +1,48 @@
+-- reserva unica
+//*[@id="typeofbookingddl"]
+
+-- input: nombre del progenitor del cual toma la ciudadania
+//*[@id="DatiAddizionaliPrenotante_0___testo"]
+
+-- input: lugar de nacimiento del progenitor
+//*[@id="DatiAddizionaliPrenotante_1___testo"]
+
+-- input: fecha de nacimiento del progenitor (dd/mm/yyyy) (no hace falta poner / en el input)
+//*[@id="DatiAddizionaliPrenotante_2___data"]
+
+-- input: direccion completa de residencia
+//*[@id="DatiAddizionaliPrenotante_3___testo"]
+
+-- notas para la sede
+//*[@id="BookingNotes"]
+
+-- boton para escribir codigo
+//*[@id="otp-input"]
+
+-- boton de enviar codigo
+//*[@id="otp-send"]
+
+-- boton de aceptar terminos
+//*[@id="PrivacyCheck"]
+
+-- boton de continuar
+//*[@id="btnAvanti"]
+
+-- boton de next month
+//*[@id="datetimepicker"]/div/ul/ul/div/div[1]/table/thead/tr[1]/th[3]/span
+
+-- tabla de datos del calendario
+//*[@id="datetimepicker"]/div/ul/ul/div/div[1]/table
+
+-- un lugar ocupado
+//*[@id="datetimepicker"]/div/ul/ul/div/div[1]/table/tbody/tr[4]/td[6]
+
+-- ligar libre
+//*[@id="datetimepicker"]/div/ul/ul/div/div[1]/table/tbody/tr[5]/td[1]
+
+-- boton de horario
+//*[@id="loader-content"]/section[1]/div/div/div[2]/section/div[2]/ol/li[19]/div/div
+
+-- boton de reserva
+//*[@id="btnPrenotaNoOtp"]
+
